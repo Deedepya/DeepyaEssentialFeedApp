@@ -16,6 +16,7 @@
 		3F7BB27C2B952D83009C6B71 /* EssentialFeediOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BB27B2B952D83009C6B71 /* EssentialFeediOSAppUITestsLaunchTests.swift */; };
 		3F7BB28A2B9534AC009C6B71 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BB2892B9534AC009C6B71 /* FeedItem.swift */; };
 		3F7BB28C2B9534B8009C6B71 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BB28B2B9534B8009C6B71 /* FeedLoader.swift */; };
+		3F7BB2912B954423009C6B71 /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BB2902B954423009C6B71 /* RemoteFeedLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3F7BB27B2B952D83009C6B71 /* EssentialFeediOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeediOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3F7BB2892B9534AC009C6B71 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		3F7BB28B2B9534B8009C6B71 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
+		3F7BB2902B954423009C6B71 /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				3F7BB26F2B952D83009C6B71 /* EssentialFeediOSAppTests.swift */,
+				3F7BB2902B954423009C6B71 /* RemoteFeedLoaderTests.swift */,
 			);
 			path = EssentialFeediOSAppTests;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7BB2912B954423009C6B71 /* RemoteFeedLoaderTests.swift in Sources */,
 				3F7BB2702B952D83009C6B71 /* EssentialFeediOSAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
