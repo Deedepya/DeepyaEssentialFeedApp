@@ -1,0 +1,44 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2706
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17260\viewh11180\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs30 \cf0 \
+Feed Feature - Added FeedItem model and FeedLoader protocol
+\f1\b0 \
+\
+1.To get Feed, we need to create a model which contains all required data like its id, description, location, image URL. That is why a model is created\
+2.\
+a.To get Feed, we need a method which does this work. That is why  load() method is created and as fetching is time consuming we implement it in other thread and as its implemented in other use escaping closure to return ur value. \
+\
+b.In closure, we expect to get return value as FeedItem but as fetching feeds might fail instead of output as FeedItem keep it as enum with two possible values ie., either FeedItem or Error
+\f0\b \
+\
+Network Layer\
+Lesson 1:\
+\
+Step 1:\
+Understand what you need to test from Remote Feed Loader. So write requirements for it below\
+
+\f1\b0 \
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\uc0\u8226 	}You need to load feed items and to load those feed items we need a url (as we are developing remote feed loader to fetch data from network). So we need a url as requirement 1\
+{\listtext	\uc0\u8226 	}Using that url, fetch data from network - ie., we need a function which fetches that data\
+{\listtext	\uc0\u8226 	}Once the data is received, validate the data ie., if its expected data or not\
+{\listtext	\uc0\u8226 	}If its expected data then start mapping and group ur desired data (as it has multiple properties), club it into single object using struct (class is not required here)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0\b Edge cases:
+\f1\b0 \
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	\uc0\u8226 	}What is user is in offline, then fetching data fails and we don't have desired data\
+{\listtext	\uc0\u8226 	}What if back end does not return expected data, then we don't have desired data\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+}

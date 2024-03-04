@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2706
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17260\viewh11180\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf0 \
+
+\f1\b Main requirement: 
+\f0\b0 To display Feeds, we obviously need to develop UI module which has UI code and API Layer which fetches data\
+
+\f1\b \
+1.Feed Feature:
+\f0\b0 \
+But to develop a modularized app ie., to keep UI Module and API Layer module independent of each other we need some interface which communicates between these two modules\
+\
+
+\f1\b so,
+\f0\b0 \
+UI Module requires location, imageURL, description to display in its screen.\
+API layer loads data and after receiving data, it can be converted to required model (ie., FeedItem model) as per our business requirement\
+But UIModule might have a button or something which says to load feed then only our API Layer can call its load function.\
+\
+
+\f1\b So common things here is FeedItem, load function
+\f0\b0 \
+- UIModule just needs FeedItem to display data on screen and load function to fetch feeds\
+- API Layer just needs to know when to trigger load function and it must return FeedItem model\
+
+\f1\b - so if we can have FeedItem Module and class/protocol/struct with load function then that interface can be used both in UIModule and API Layer Module. So that UI Module and API Layer module can be developed independent of each other.\
+
+\f0\b0 As its an interface and as we want 
+\f1\b to avoid tight coupling we can use a protocol for load function instead of struct / class
+\f0\b0 .
+\f1\b \
+\
+\
+2.API Layer Module (or Network Module):\
+}
