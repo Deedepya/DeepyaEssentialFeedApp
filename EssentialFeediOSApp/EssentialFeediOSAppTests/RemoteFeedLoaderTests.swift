@@ -6,33 +6,8 @@
 //
 
 import XCTest
+import EssentialFeediOSApp
 
-class RemoteFeedLoader {
-    
-    let url: URL
-    let client: HTTPClient
-    
-    init(url: URL, client: HTTPClient) {
-        self.url = url
-        self.client = client
-    }
-    
-    func load(client: HTTPClient) {
-        client.get(fromUrl: url)
-    }
-}
-
-protocol HTTPClient {
-    func get(fromUrl url: URL?)
-}
-
-class HTTPClientSpy: HTTPClient {
-    var requestedURL: URL?
-    
-    func get(fromUrl url: URL?) {
-        requestedURL = url
-    }
-}
 
 final class RemoteFeedLoaderTests: XCTestCase {
 
@@ -42,15 +17,24 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     func test_load_requestDataFromURL() {
-        let (sut, client) = makeSUT(url: URL(string: "https://apiurl")!)
-        sut.load(client: client)
-        XCTAssertNotNil(client.requestedURL)
+        let url = URL(string: "https://apiurl")!
+        let (sut, client) = makeSUT(url: url)
+        sut.load()
+        XCTAssertEqual(client.requestedURL, url)
+//        XCTAssertNotNil(client.requestedURL)
     }
     
     func makeSUT(url: URL = URL(string: "https://www.google.com/?client=safari")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let loader = RemoteFeedLoader(url: url, client: client)
+        let sut = RemoteFeedLoader(url: url, client: client)
+        return (sut, client)
+    }
+    
+    class HTTPClientSpy: HTTPClient {
+        var requestedURL: URL?
         
-        return (loader, client)
+        func get(fromUrl url: URL?) {
+            requestedURL = url
+        }
     }
 }

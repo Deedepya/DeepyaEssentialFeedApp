@@ -6,9 +6,10 @@
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs32 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f1\b Main requirement: 
-\f0\b0 To display Feeds, we obviously need to develop UI module which has UI code and API Layer which fetches data\
+\f1\b \cf0 Main requirement: 
+\f0\b0 To display Feeds, we obviously need to develop UI module which has UI code and API Layer / Database layer which provides this data\
 
 \f1\b \
 1.Feed Feature:
@@ -18,9 +19,12 @@ But to develop a modularized app ie., to keep UI Module and API Layer module ind
 
 \f1\b so,
 \f0\b0 \
-UI Module requires location, imageURL, description to display in its screen.\
-API layer loads data and after receiving data, it can be converted to required model (ie., FeedItem model) as per our business requirement\
-But UIModule might have a button or something which says to load feed then only our API Layer can call its load function.\
+UI Module requires 
+\f1\b location, imageURL, description
+\f0\b0  to display in its screen. UIModule might have a button or something which says to load feed then only our API Layer can call its load function.\
+API layer loads data and after receiving data, it can be converted to required model 
+\f1\b (ie., FeedItem model) 
+\f0\b0 as per our business requirement\
 \
 
 \f1\b So common things here is FeedItem, load function
@@ -28,13 +32,71 @@ But UIModule might have a button or something which says to load feed then only 
 - UIModule just needs FeedItem to display data on screen and load function to fetch feeds\
 - API Layer just needs to know when to trigger load function and it must return FeedItem model\
 
-\f1\b - so if we can have FeedItem Module and class/protocol/struct with load function then that interface can be used both in UIModule and API Layer Module. So that UI Module and API Layer module can be developed independent of each other.\
-
-\f0\b0 As its an interface and as we want 
-\f1\b to avoid tight coupling we can use a protocol for load function instead of struct / class
-\f0\b0 .
+\f1\b - so common thigns in UIModule and APILayer is loadFunction and FeedItem model, 
+\f0\b0 so if we can have FeedItem Module and class/protocol/struct with load function then that interface can be used both in UIModule and API Layer Module. So that UI Module and API Layer module can be developed independent of each other.\
+As its an interface and as we want to avoid tight coupling we can use a protocol for load function instead of struct / class.
 \f1\b \
 \
 \
-2.API Layer Module (or Network Module):\
-}
+2.API Layer Module (or Network Module):
+\f0\b0 \
+\
+Decide what you want to fulfill through this module. As of now, we need to fetch data and we already have interface "Feed feature" where we have load function. So we need to add real implementation here\
+\
+
+\f1\b - How to declare class and test case: 
+\f0\b0 First to load something, we need "load func" and to hold it we need a class eg: RemoteFeedLoader. Then we need to write test case for it\
+
+\f1\b Summary:
+\f0\b0  What is our functionality here and accordingly write test case n to make it pass create production code "RemoteFeedLoader"\
+\
+-
+\f1\b How to decide what to write in load function and what to test:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 Yes, through our test case we call loadFunction and as this function intention is to use url to make api call, check if url exists when this function is called. But to check if url exists, first think where do we need to get it from - should we get it her ein RemoteFeedLoader init DI or through loadFunction or somewhere else.
+\f1\b \
+
+\f0\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b \cf0 - How does httpClient come into picture here: 
+\f0\b0 We can start with the knowledgel we have, usually we need httpClient which uses urlsession to make api call. So load func will use httpClient which would need url. So the requirement here is for httpClient to have url, so define httpclinet with url optional property and set it when it calls its api like "getData(url:)". 
+\f1\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\b \cf0 -When does spy come into picture: 
+\f0\b0 As httplcinet requires it only when "getData(url:)" is called, take checking if url is set or not to Spy. Spy can be declared through subclass if the priduction object is class and through extension if its protocol.\
+
+\f1\b Note: 
+\f0\b0 Use spy to check if that function is called or not, by using some test property (mostly optional)\
+\
+
+\f1\b Note: 
+\f0\b0 make sure ur spy accessiblity is set appropriately eg: in this case spy can be declared within the test class itself instead of declaring it outside n making it global. Also, if it can be inside test class itself then 
+\f1\b we can make it as private also\
+\
+- Experimented with singleton httpClinet as we use httpClient as singleton.  \
+When singleton is used for httpclient, the main problem would be -
+\f0\b0 - remoteLoader "load func" would have httpClient singleton instance
+\f1\b , it means remoteLoader have knowledge of this singleton and for it know the module where this singleton is declared (ie., it has to locate that instance) you have to import that module and remoteLoader won't have chance to use any other client except this 
+\f0\b0 -- so unnecessary complication here. That is why we just pass it as DI to "load func"
+\f1\b \
+Note:Try to understand that don't blindly follow what others have used, 
+\f0\b0 instead go with ur requirement flow (ofcourse, you have learn their ideas so that you will be aware of multiple designs when you are trying to search for a solution. But using anything directly just because you saw it somewhere will mess up your code)
+\f1\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 \
+-
+\f1\b Whether to pass DI in init or in function --
+\f0\b0  client, url should be passed as DI to
+\f1\b  load function
+\f0\b0  (ie., functional injection) or in
+\f1\b  init (ie., constructor injection) ?\
+ie., if we want to use same remoteFeedLoader instance and just use different url, client for every loadFunction we send them as DI in function. But it remains same throughout the instance then we can pass it in init DI.\
+\
+Yes, we might need - database or cache as clinet instead of httpClinet. But we already have "load function" from FeedFeature for it as interace (protocl) and here in remoteFeedLoade we are using it explicitly for api call, so its is suggested to use it in init only as it does not make any difference by using in function.}

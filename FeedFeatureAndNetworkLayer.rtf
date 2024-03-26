@@ -8,12 +8,18 @@
 \f0\b\fs24 \cf0 Feed Feature - Added FeedItem model and FeedLoader protocol
 \f1\b0 \
 \
-1.To get Feed, we need to create a model which contains all required data like its id, description, location, image URL. That is why a model is created\
+1.To get Feed, we need to create a model which contains all required data like its id, description, location, image URL.
+\f0\b  That is why a model is created
+\f1\b0 \
 2.\
-a.To get Feed, we need a method which does this work. That is why  load() method is created and as fetching is time consuming we implement it in other thread and as its implemented in other use escaping closure to return ur value. \
+a.To get Feed, we need a method which does this work. That is why  load() method is created and as fetching is time consuming we implement it in other thread and as its implemented in other 
+\f0\b other thread 
+\f1\b0 use 
+\f0\b escaping closure
+\f1\b0  to return ur value. \
 \
-b.In closure, we expect to get return value as FeedItem but as fetching feeds might fail instead of output as FeedItem keep it as enum with two possible values ie., either FeedItem or Error
-\f0\b \
+b.In closure, we expect to get return value as FeedItem but as fetching feeds might fail instead of output as 
+\f0\b FeedItem keep it as enum with two possible values ie., either FeedItem or Error\
 \
 Network Layer\
 Lesson 1:\

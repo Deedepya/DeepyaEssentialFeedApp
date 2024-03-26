@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F7242952BB37E1500A36C39 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7242942BB37E1500A36C39 /* RemoteFeedLoader.swift */; };
 		3F7BB25F2B952D82009C6B71 /* EssentialFeediOSAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BB25E2B952D82009C6B71 /* EssentialFeediOSAppApp.swift */; };
 		3F7BB2612B952D82009C6B71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7BB2602B952D82009C6B71 /* ContentView.swift */; };
 		3F7BB2632B952D83009C6B71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7BB2622B952D83009C6B71 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F7242942BB37E1500A36C39 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		3F7BB25B2B952D82009C6B71 /* EssentialFeediOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialFeediOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7BB25E2B952D82009C6B71 /* EssentialFeediOSAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeediOSAppApp.swift; sourceTree = "<group>"; };
 		3F7BB2602B952D82009C6B71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F7242932BB37DF800A36C39 /* FeedAPI */ = {
+			isa = PBXGroup;
+			children = (
+				3F7242942BB37E1500A36C39 /* RemoteFeedLoader.swift */,
+			);
+			path = FeedAPI;
+			sourceTree = "<group>";
+		};
 		3F7BB2522B952D82009C6B71 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +110,7 @@
 		3F7BB25D2B952D82009C6B71 /* EssentialFeediOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				3F7242932BB37DF800A36C39 /* FeedAPI */,
 				3F7BB2882B95349C009C6B71 /* FeedFeature */,
 				3F7BB25E2B952D82009C6B71 /* EssentialFeediOSAppApp.swift */,
 				3F7BB2602B952D82009C6B71 /* ContentView.swift */,
@@ -277,6 +288,7 @@
 				3F7BB2612B952D82009C6B71 /* ContentView.swift in Sources */,
 				3F7BB25F2B952D82009C6B71 /* EssentialFeediOSAppApp.swift in Sources */,
 				3F7BB28C2B9534B8009C6B71 /* FeedLoader.swift in Sources */,
+				3F7242952BB37E1500A36C39 /* RemoteFeedLoader.swift in Sources */,
 				3F7BB28A2B9534AC009C6B71 /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
